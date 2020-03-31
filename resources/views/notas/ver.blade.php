@@ -5,6 +5,12 @@
 
 @section('cuerpo')
 
+<div class="row mt-2">
+		<div class="col">
+			<a href="{{ route('nota.aniadir', [ 'idt' => $_GET['id']]) }}"><i class="far fa-plus-square"></i> añadir nota</a>
+		</div>
+	</div>
+
 	<table class="table">
 		<thead>
 			<tr>
@@ -29,7 +35,8 @@
 						no
 					@endif
 				</td>
-				
+				<td><a href="{{ route('nota.editar', ['id' => $item->idNot]) }}"><i class="fas fa-edit"></i>editar</a></td>
+				<td></td>
 			</tr>
 			@endforeach
 		</tbody>

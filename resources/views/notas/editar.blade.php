@@ -9,29 +9,48 @@
 	<div class="row">
 		<div class="col">
 
-			@if($tablero)
+			@if($nota)
+			<!--{{$nota}}--> 
 			<!-- CRSF (Cross-site Request Fogery) -->
-			<form action="{{ route('tablero.editar') }}" method="post">
+			<form action="{{ route('nota.editar') }}" method="post">
 
-				<input type="hidden" name="id" value="{{ $tablero->idTab }}" />
+				<input type="hidden" name="id" value="{{ $nota->idNot }}" />
 				@csrf
 
 				<div class="row">
 					<div class="col-sm-4">
 						<input class="form-control" type="text" name="nom" 
-							   value="{{ $tablero->nombre }}"
+							   value="{{ $nota->texto }}"
 							   required />
 					</div>
-
+					<div class="col-sm-4">
+						@if($nota->completado)
+						<select name="com">
+							<option value="0" >
+								no
+							</option>
+							<option value="1" selected>
+								si
+							</option>
+						</select>
+						@else
+						<select name="com">
+							<option value="0" selected>
+								no
+							</option>
+							<option value="1">
+								si
+							</option>
+						</select>
+						@endif
+					</div>
 					<div class="col-sm-2">
 						<button class="btn btn-primary" type="submit">@lang('messages.btguardar')</button>
 					</div>
 				</div>
 			</form>
 			@else
-			<div class="alert alert-info" role="alert">
-		  		{{ __('messages.notableros') }}
-			</div>
+			
 			@endif
 		</div>
 	</div>
